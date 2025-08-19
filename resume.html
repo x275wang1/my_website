@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ximo Wang | Data Analyst & Developer</title>
+
+<!-- Preconnect to external resources -->
+<link rel="preconnect" href="https://cdn.tailwindcss.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Critical CSS for preventing black screen -->
+<style>
+    body {
+        background-color: #0A0A0F;
+        color: #e5e7eb;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    .initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(135deg, #0A0A0F 0%, #1a1a2e 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+    }
+    .loader-content {
+        text-align: center;
+    }
+    .loader-text {
+        font-size: 2rem;
+        color: #D4AF37;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+    }
+    .loader-bar {
+        width: 200px;
+        height: 4px;
+        background: rgba(212, 175, 55, 0.2);
+        border-radius: 2px;
+        margin: 20px auto;
+        overflow: hidden;
+    }
+    .loader-progress {
+        height: 100%;
+        background: linear-gradient(90deg, #D4AF37, #FFD700);
+        border-radius: 2px;
+        animation: loading 1.5s ease-in-out infinite;
+    }
+    .loader-subtext {
+        margin-top: 8px;
+        color: #9CA3AF;
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+    }
+    @keyframes loading {
+        0% { width: 0%; }
+        50% { width: 70%; }
+        100% { width: 100%; }
+    }
+</style>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Tailwind Configuration -->
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                'deep-space': '#0A0A0F',
+                'matte-gold': '#D4AF37',
+                'liquid-gold': '#FFD700',
+            },
+            fontFamily: {
+                'future': ['Orbitron', 'sans-serif'],
+                'sans': ['Inter', 'sans-serif']
+            },
+            animation: {
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'glow': 'glow 2s ease-in-out infinite alternate',
+                'flow': 'flow 6s ease-in-out infinite',
+                'ripple': 'ripple 2s cubic-bezier(0.2, 0.8, 0.4, 1) forwards'
+            },
+            keyframes: {
+                glow: {
+                    '0%': { 'text-shadow': '0 0 5px rgba(212, 175, 55, 0.5), 0 0 10px rgba(212, 175, 55, 0.3)' },
+                    '100%': { 'text-shadow': '0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.5), 0 0 30px rgba(212, 175, 55, 0.3)' }
+                },
+                flow: {
+                    '0%, 100%': { 'background-position': '0% 50%' },
+                    '50%': { 'background-position': '100% 50%' }
+                },
+                ripple: {
+                    '0%': { 'transform': 'scale(0)', 'opacity': '1' },
+                    '100%': { 'transform': 'scale(2)', 'opacity': '0' }
+                }
+            }
+        }
+    }
+}
+</script>
+
+<!-- Custom Styles -->
+<style type="text/tailwindcss">
+@layer utilities {
+    .text-glow {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.5);
+    }
+    .gold-gradient {
+        background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+        background-size: 200% 200%;
+        animation: flow 6s ease infinite;
+    }
+    .glass-effect {
+        background: rgba(10, 10, 15, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    .liquid-border {
+        position: relative;
+        border: 1px solid transparent;
+        background-clip: padding-box;
+    }
+    .liquid-border::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid;
+        border-image: linear-gradient(135deg, #D4AF37, #FFD700, #D4AF37) 1;
+        border-radius: inherit;
+        pointer-events: none;
+        opacity: 0.7;
+    }
+    .gold-particles {
+        background-image: radial-gradient(circle, rgba(212,175,55,0.3) 1px, transparent 1px);
+        background-size: 30px 30px;
+    }
+    .text-stroke {
+        -webkit-text-stroke: 1px rgba(212, 175, 55, 0.8);
+        color: transparent;
+    }
+    .clip-text {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    .typing-cursor {
+        border-right: 2px solid rgba(212, 175, 55, 0.8);
+        animation: blink 1s step-end infinite;
+    }
+        .cv-auto {
+        content-visibility: auto;
+        contain-intrinsic-size: 1000px 800px;
+    }
+    
+
+    
+    .skill-bubble {
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: #0A0A0F;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+    
+    .skill-bubble:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(255, 215, 0, 0.7);
+        background: linear-gradient(135deg, #FFA500, #FF8C00);
+    }
+    
+    @keyframes blink {
+        from, to { border-color: transparent }
+        50% { border-color: rgba(212, 175, 55, 0.8) }
+    }
+}
+</style>
+</head>
+
+<body class="bg-deep-space text-gray-200 overflow-x-hidden font-sans">
+<!-- Loading Screen -->
+<div id="loader" class="initial-loader">
+    <div class="loader-content">
+        <div class="loader-text">XIMO WANG</div>
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+        <div id="loader-subtext" class="loader-subtext">Loading portfolio…</div>
+    </div>
+</div>
+
+<!-- Particle Background Container (lazy loaded) -->
+<div id="particle-container" class="fixed inset-0 z-0"></div>
+
+<!-- Navigation -->
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-700 glass-effect">
+    <div class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+        <a href="#" class="text-2xl font-future font-bold text-glow tracking-wider">
+            <span class="clip-text gold-gradient">XIMO</span><span class="text-matte-gold">WANG</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex space-x-8 items-center">
+            <a href="#home" class="nav-link relative group py-2 overflow-hidden">
+                <span class="relative z-10 transition-all duration-500 group-hover:tracking-widest">HOME</span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-matte-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+            </a>
+            <a href="#summary" class="nav-link relative group py-2 overflow-hidden">
+                <span class="relative z-10 transition-all duration-500 group-hover:tracking-widest">ABOUT</span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-matte-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+            </a>
+            <a href="#experience" class="nav-link relative group py-2 overflow-hidden">
+                <span class="relative z-10 transition-all duration-500 group-hover:tracking-widest">EXPERIENCE</span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-matte-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+            </a>
+            <a href="#skills" class="nav-link relative group py-2 overflow-hidden">
+                <span class="relative z-10 transition-all duration-500 group-hover:tracking-widest">SKILLS</span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-matte-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+            </a>
+            <a href="#projects" class="nav-link relative group py-2 overflow-hidden">
+                <span class="relative z-10 transition-all duration-500 group-hover:tracking-widest">PROJECTS</span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-matte-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+            </a>
+            <a href="#life" class="nav-link relative group py-2 overflow-hidden">
+                <span class="relative z-10 transition-all duration-500 group-hover:tracking-widest">LIFE</span>
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-matte-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+            </a>
+            <a href="#contact" class="px-6 py-2 rounded-full liquid-border gold-gradient text-deep-space font-semibold hover:shadow-lg hover:shadow-matte-gold/20 transition-all duration-500">
+                CONTACT
+            </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden text-matte-gold focus:outline-none">
+            <i class="fa fa-bars text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="md:hidden hidden glass-effect border-t border-matte-gold/20">
+        <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <a href="#home" class="py-2 border-b border-matte-gold/10 hover:text-matte-gold transition-colors">HOME</a>
+            <a href="#summary" class="py-2 border-b border-matte-gold/10 hover:text-matte-gold transition-colors">ABOUT</a>
+            <a href="#experience" class="py-2 border-b border-matte-gold/10 hover:text-matte-gold transition-colors">EXPERIENCE</a>
+            <a href="#skills" class="py-2 border-b border-matte-gold/10 hover:text-matte-gold transition-colors">SKILLS</a>
+            <a href="#projects" class="py-2 hover:text-matte-gold transition-colors">PROJECTS</a>
+            <a href="#life" class="py-2 hover:text-matte-gold transition-colors">LIFE</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="min-h-screen relative flex items-center justify-center pt-16 overflow-hidden">
+    <div class="absolute inset-0 gold-particles opacity-30"></div>
+    <div class="container mx-auto px-4 z-10 text-center">
+        <div id="hero-title" class="text-[clamp(2.5rem,8vw,6rem)] font-future font-bold mb-6 leading-tight">
+            <span id="hello-text" class="block opacity-0"></span>
+            <span id="name-text" class="block opacity-0"></span>
+        </div>
+        <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-gray-300 mb-6 max-w-3xl mx-auto tracking-wide">
+            <span id="welcome-text" class="clip-text gold-gradient animate-flow"></span>
+        </p>
+        <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-gray-300 mb-12 max-w-3xl mx-auto tracking-wide">
+            <span class="clip-text gold-gradient animate-flow">I am glad that you are here :）</span>
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#experience" class="px-8 py-4 rounded-full liquid-border gold-gradient text-deep-space font-semibold text-lg hover:shadow-lg hover:shadow-matte-gold/30 transition-all duration-500 transform hover:-translate-y-1">
+                VIEW MY WORK
+            </a>
+            <a href="#contact" class="px-8 py-4 rounded-full border border-matte-gold/50 text-matte-gold font-semibold text-lg hover:bg-matte-gold/10 transition-all duration-500 transform hover:-translate-y-1">
+                GET IN TOUCH
+            </a>
+            <a href="#life" class="px-8 py-4 rounded-full border border-matte-gold/50 text-matte-gold font-semibold text-lg hover:bg-matte-gold/10 transition-all duration-500 transform hover:-translate-y-1">
+                SEE MORE ABOUT MY LIFE
+            </a>
+        </div>
+    </div>
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#summary" class="text-matte-gold/70 hover:text-matte-gold transition-colors">
+            <i class="fa fa-angle-down text-3xl"></i>
+        </a>
+    </div>
+</section>
+
+<!-- Life Section -->
+<section id="life" class="py-24 relative bg-deep-space/80">
+    <div class="absolute inset-0 gold-particles opacity-10"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <h2 class="section-title text-[clamp(2rem,5vw,3.5rem)] font-future font-bold mb-4 text-center opacity-0">
+            <span class="text-stroke">MY LIFE</span>
+            <span class="block mt-2 clip-text gold-gradient">关于我</span>
+        </h2>
+
+        <!-- Fun Facts -->
+        <div class="max-w-5xl mx-auto mb-12">
+            <div class="glass-effect rounded-2xl p-8">
+                <h3 class="text-2xl font-future text-matte-gold mb-6 text-center">Fun Facts</h3>
+                <div id="fun-facts-cloud" class="relative min-h-[280px] sm:min-h-[340px] md:min-h-[380px] select-none transition-opacity duration-200"></div>
+                <div class="text-center text-xs text-gray-400 mt-3">点击关键词可随机换位置</div>
+            </div>
+        </div>
+
+        <!-- Photos: My Campus & Friends -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <!-- My Photography About Waterloo -->
+            <div class="glass-effect rounded-2xl p-6">
+                <h3 class="text-2xl font-future text-matte-gold mb-4">My Photography About Waterloo</h3>
+                <div class="relative overflow-hidden rounded-xl cv-auto">
+                    <div id="waterloo-carousel" class="flex transition-transform duration-700 ease-out" style="will-change: transform;" data-dynamic="true"></div>
+                    <!-- Controls -->
+                    <button id="carousel-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-deep-space/70 hover:bg-deep-space/90 text-white rounded-full w-10 h-10 flex items-center justify-center border border-matte-gold/40">
+                        <i class="fa fa-angle-left"></i>
+                    </button>
+                    <button id="carousel-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-deep-space/70 hover:bg-deep-space/90 text-white rounded-full w-10 h-10 flex items-center justify-center border border-matte-gold/40">
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Music & Gaming -->
+            <div class="glass-effect rounded-2xl p-6">
+                <h3 class="text-2xl font-future text-matte-gold mb-4">Music & Gaming</h3>
+                <div class="relative overflow-hidden rounded-xl cv-auto">
+                    <div id="friends-carousel" class="flex transition-transform duration-700 ease-out" style="will-change: transform;" data-dynamic="true"></div>
+                    <!-- Controls -->
+                    <button id="friends-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-deep-space/70 hover:bg-deep-space/90 text-white rounded-full w-10 h-10 flex items-center justify-center border border-matte-gold/40">
+                        <i class="fa fa-angle-left"></i>
+                    </button>
+                    <button id="friends-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-deep-space/70 hover:bg-deep-space/90 text-white rounded-full w-10 h-10 flex items-center justify-center border border-matte-gold/40">
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+
+
+
+<!-- Education Section -->
+<section id="education" class="py-24 relative bg-deep-space/80">
+    <div class="absolute inset-0 gold-particles opacity-10"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <h2 class="section-title text-[clamp(2rem,5vw,3.5rem)] font-future font-bold mb-4 text-center opacity-0">
+            <span class="text-stroke">EDUCATION</span>
+        </h2>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="education-card glass-effect rounded-2xl p-8 transform transition-all duration-700 hover:-translate-y-3">
+                <div class="flex items-start gap-6">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 border-2 border-matte-gold/30">
+                        <img src="./school/waterloo.jpeg" alt="University of Waterloo" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-future text-matte-gold mb-2">University of Waterloo</h3>
+                        <p class="text-xl text-gray-300 mb-4">Bachelor of Mathematics, Computer Science Minor</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div>
+                                <p class="text-matte-gold font-semibold">GPA</p>
+                                <p class="text-gray-300">3.8/4.0</p>
+                            </div>
+                            <div>
+                                <p class="text-matte-gold font-semibold">Award</p>
+                                <p class="text-gray-300">President's Scholarship</p>
+                            </div>
+                            <div>
+                                <p class="text-matte-gold font-semibold">Status</p>
+                                <p class="text-gray-300">Current Student</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-matte-gold font-semibold mb-3">Relevant Coursework</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Financial Markets</span>
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Financial Accounting</span>
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Microeconomics</span>
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Macroeconomics</span>
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Probability</span>
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Statistics</span>
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Actuarial Mathematics</span>
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Linear Algebra</span>
+                                <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-sm">Computer Science</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-24 relative">
+    <div class="absolute inset-0 gold-particles opacity-20"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <h2 class="section-title text-[clamp(2rem,5vw,3.5rem)] font-future font-bold mb-4 text-center opacity-0">
+            <span class="text-stroke">SKILLS</span>
+        </h2>
+        <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16 opacity-0">
+            Software tools and platforms I use for data analysis and financial modeling.
+        </p>
+
+
+
+        <!-- Software Tools -->
+        <div class="mt-16">
+            <h3 class="text-2xl font-future text-matte-gold mb-8 text-center">Software Proficiency</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="software-card glass-effect rounded-xl p-8 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-matte-gold/20">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center gold-gradient">
+                        <i class="fa fa-table text-deep-space text-3xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-3">Excel</h4>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">VBA</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">Pivot Table</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">VLOOKUP</span>
+                    </div>
+                </div>
+
+                <div class="software-card glass-effect rounded-xl p-8 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-matte-gold/20">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center gold-gradient">
+                        <i class="fa fa-database text-deep-space text-3xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-3">SQL</h4>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">MySQL</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">SQL Server</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">Oracle</span>
+                    </div>
+                </div>
+
+                <div class="software-card glass-effect rounded-xl p-8 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-matte-gold/20">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center gold-gradient">
+                        <i class="fa fa-bar-chart text-deep-space text-3xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-3">Financial Skills</h4>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">Financial Statement</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">Financial Modeling</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">Valuation</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">Risk Management</span>
+                    </div>
+                </div>
+
+                <div class="software-card glass-effect rounded-xl p-8 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-matte-gold/20">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center gold-gradient">
+                        <i class="fa fa-line-chart text-deep-space text-3xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-3">Visualization</h4>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">PowerBI</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">HTML+CSS</span>
+                    </div>
+                </div>
+
+                <div class="software-card glass-effect rounded-xl p-8 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-matte-gold/20">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center gold-gradient">
+                        <i class="fa fa-code text-deep-space text-3xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-3">Python</h4>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">NumPy</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">Pandas</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">Matplotlib</span>
+                    </div>
+                </div>
+
+                <div class="software-card glass-effect rounded-xl p-8 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-matte-gold/20">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center gold-gradient">
+                        <i class="fa fa-cloud text-deep-space text-3xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-3">Azure</h4>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">AZ-900</span>
+                        <span class="px-3 py-1 bg-matte-gold/20 rounded-full text-xs">AI-900</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="py-24 relative bg-deep-space/80">
+    <div class="absolute inset-0 gold-particles opacity-10"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <h2 class="section-title text-[clamp(2rem,5vw,3.5rem)] font-future font-bold mb-4 text-center opacity-0">
+            <span class="text-stroke">EXPERIENCE</span>
+        </h2>
+        <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16 opacity-0">
+            Professional experience in data analysis, financial risk assessment, and cloud computing.
+        </p>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="experience-card glass-effect rounded-2xl p-8 transform transition-all duration-700 hover:-translate-y-3">
+                <div class="flex items-start gap-6">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center gold-gradient text-deep-space flex-shrink-0">
+                        <i class="fa fa-windows text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-future text-matte-gold mb-2">Microsoft</h3>
+                        <p class="text-xl text-gray-300 mb-2">Financial Risk and Data Analysis</p>
+                        <p class="text-matte-gold/80 mb-6">Waterloo, ON (Remote) | May 2024 -- August 2024</p>
+
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full flex items-center justify-center gold-gradient text-deep-space flex-shrink-0 mt-0.5">
+                                    <i class="fa fa-certificate text-xs"></i>
+                                </div>
+                                <p class="text-gray-300">Certified in Microsoft Azure Fundamentals (AZ-900) and Azure AI Fundamentals (AI-900)</p>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full flex items-center justify-center gold-gradient text-deep-space flex-shrink-0 mt-0.5">
+                                    <i class="fa fa-code text-xs"></i>
+                                </div>
+                                <p class="text-gray-300">Developed Python scripts to extract, process, and analyze financial datasets, leveraging libraries like Pandas and NumPy</p>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full flex items-center justify-center gold-gradient text-deep-space flex-shrink-0 mt-0.5">
+                                    <i class="fa fa-cogs text-xs"></i>
+                                </div>
+                                <p class="text-gray-300">Designed and implemented an ETL pipeline to cleanse and load financial data into Azure SQL Database</p>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full flex items-center justify-center gold-gradient text-deep-space flex-shrink-0 mt-0.5">
+                                    <i class="fa fa-pie-chart text-xs"></i>
+                                </div>
+                                <p class="text-gray-300">Applied sampling techniques to evaluate portfolio performance, providing actionable insights for investment strategies</p>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full flex items-center justify-center gold-gradient text-deep-space flex-shrink-0 mt-0.5">
+                                    <i class="fa fa-dashboard text-xs"></i>
+                                </div>
+                                <p class="text-gray-300">Created interactive dashboards in Power BI, integrating data from Azure Machine Learning Studio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-24 relative">
+    <div class="absolute inset-0 gold-particles opacity-20"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <h2 class="section-title text-[clamp(2rem,5vw,3.5rem)] font-future font-bold mb-4 text-center opacity-0">
+            <span class="text-stroke">PROJECTS</span>
+        </h2>
+        <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16 opacity-0">
+            Key projects demonstrating expertise in fraud detection, data analytics, and business intelligence.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Project 1 -->
+            <div class="project-card group relative overflow-hidden rounded-2xl glass-effect p-8 transform transition-all duration-700 hover:-translate-y-3">
+                <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+                    <div class="w-full h-full rounded-full gold-gradient"></div>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center gold-gradient text-deep-space mb-4">
+                        <i class="fa fa-shield text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-future text-matte-gold mb-2">ABM Fraud Analytics Project</h3>
+                    <p class="text-matte-gold/80 text-sm mb-4">SAS, SQL | July 2024 -- November 2024</p>
+                    <div class="space-y-3">
+                        <p class="text-gray-300 text-sm">• Implemented fraud detection rules to identify high-risk ABM withdrawals with high capture rates</p>
+                        <p class="text-gray-300 text-sm">• Analyzed time-based fraud patterns using case logic to identify peak fraudulent activity windows</p>
+                        <p class="text-gray-300 text-sm">• Developed rolling-window transaction metrics to detect anomalies within 120-hour periods</p>
+                        <p class="text-gray-300 text-sm">• Automated monitoring for fraud detection systems using SAS Macros and SQL dashboards</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card group relative overflow-hidden rounded-2xl glass-effect p-8 transform transition-all duration-700 hover:-translate-y-3">
+                <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+                    <div class="w-full h-full rounded-full gold-gradient"></div>
+                </div>
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center gold-gradient text-deep-space mb-4">
+                        <i class="fa fa-bullhorn text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-future text-matte-gold mb-2">Advertising Analytics Project</h3>
+                    <p class="text-matte-gold/80 text-sm mb-4">Python, Pandas, ChannelAttribution | August 2024 -- October 2024</p>
+                    <div class="space-y-3">
+                        <p class="text-gray-300 text-sm">• Analyzed advertising data to evaluate key metrics like conversion rate and ROAS</p>
+                        <p class="text-gray-300 text-sm">• Utilized Python and Pandas for advanced data manipulation and touchpoint aggregation</p>
+                        <p class="text-gray-300 text-sm">• Developed Markov Chain models with ChannelAttribution to assess media contributions</p>
+                        <p class="text-gray-300 text-sm">• Generated actionable insights through customer persona analysis to enhance targeting</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card group relative overflow-hidden rounded-2xl glass-effect p-8 transform transition-all duration-700 hover:-translate-y-3 lg:col-span-2">
+                <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
+                    <div class="w-full h-full rounded-full gold-gradient"></div>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex items-start gap-6">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center gold-gradient text-deep-space flex-shrink-0">
+                            <i class="fa fa-coffee text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-future text-matte-gold mb-2">Roll Up The Rim Profitability Analysis</h3>
+                            <p class="text-matte-gold/80 text-sm mb-4">Excel, VBA | October 2024</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-3">
+                                    <p class="text-gray-300 text-sm">• Conducted a consulting project to improve profitability of Roll Up The Rim loyalty program</p>
+                                    <p class="text-gray-300 text-sm">• Analyzed 920,000+ rows of loyalty program data using Excel and Pivot Tables</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <p class="text-gray-300 text-sm">• Evaluated profitability factors such as store location, winning rate, and add-ons</p>
+                                    <p class="text-gray-300 text-sm">• Developed VBA macros to automate campaign performance assessment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-24 relative bg-deep-space/80">
+    <div class="absolute inset-0 gold-particles opacity-10"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <h2 class="section-title text-[clamp(2rem,5vw,3.5rem)] font-future font-bold mb-4 text-center opacity-0">
+            <span class="text-stroke">CONTACT</span>
+        </h2>
+        <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16 opacity-0">
+            Let's connect and explore opportunities in data analysis and financial risk management.
+        </p>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-effect rounded-2xl p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-future text-matte-gold mb-6">Contact Information</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center gold-gradient text-deep-space mr-4 mt-1 flex-shrink-0">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Phone</h4>
+                                    <p class="text-gray-400 contact-info">+86 17640383611</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center gold-gradient text-deep-space mr-4 mt-1 flex-shrink-0">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Email</h4>
+                                    <p class="text-gray-400 contact-info">x275wang@uwaterloo.ca</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center gold-gradient text-deep-space mr-4 mt-1 flex-shrink-0">
+                                    <i class="fa fa-university"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">Institution</h4>
+                                    <p class="text-gray-400">University of Waterloo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-future text-matte-gold mb-6">Send a Message</h3>
+
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg bg-deep-space/50 border border-matte-gold/30 focus:border-matte-gold focus:outline-none transition-colors text-white">
+                            </div>
+
+                            <div>
+                                <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg bg-deep-space/50 border border-matte-gold/30 focus:border-matte-gold focus:outline-none transition-colors text-white">
+                            </div>
+
+                            <div>
+                                <textarea rows="4" placeholder="Your Message" class="w-full px-4 py-3 rounded-lg bg-deep-space/50 border border-matte-gold/30 focus:border-matte-gold focus:outline-none transition-colors text-white resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full px-6 py-4 rounded-full liquid-border gold-gradient text-deep-space font-semibold hover:shadow-lg hover:shadow-matte-gold/30 transition-all duration-500 transform hover:-translate-y-1">
+                                SEND MESSAGE
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-matte-gold/20 relative">
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <a href="#" class="text-2xl font-future font-bold text-glow tracking-wider">
+                    <span class="clip-text gold-gradient">XIMO</span><span class="text-matte-gold">WANG</span>
+                </a>
+                <p class="text-gray-400 mt-2">Data Analyst & Financial Risk Specialist</p>
+            </div>
+
+            <div class="text-gray-400 text-sm">
+                © 2024 Ximo Wang. All rights reserved.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating AI Assistant -->
+<div id="floating-assistant" class="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-matte-gold to-liquid-gold rounded-full cursor-pointer shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center z-50">
+    <i class="fa fa-comments text-deep-space text-xl"></i>
+    <div id="assistant-bubble" class="absolute bottom-20 right-0 bg-deep-space border border-matte-gold/30 rounded-lg p-4 min-w-[250px] opacity-0 transform translate-y-2 transition-all duration-300 pointer-events-none">
+        <div class="text-matte-gold font-semibold mb-2">Hi! I'm Ximo's AI Assistant</div>
+        <div class="text-gray-300 text-sm mb-3">I can help you learn more about Ximo's data analysis skills and experience!</div>
+        <div class="flex gap-2">
+            <button class="assistant-btn px-3 py-1 bg-matte-gold/20 text-matte-gold rounded text-xs hover:bg-matte-gold/30 transition-colors" data-action="skills">View Skills</button>
+            <button class="assistant-btn px-3 py-1 bg-matte-gold/20 text-matte-gold rounded text-xs hover:bg-matte-gold/30 transition-colors" data-action="projects">See Projects</button>
+        </div>
+    </div>
+</div>
+
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-matte-gold to-liquid-gold transform origin-left scale-x-0 transition-transform duration-150 z-50" style="width: 100%"></div>
+
+<!-- Lazy Load Scripts -->
+<script>
+// Quick loader removal
+window.addEventListener('load', function() {
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        const subtext = document.getElementById('loader-subtext');
+        const messages = [
+            'Brewing coffee and compiling pixels…',
+            'Warming up data models…',
+            'Rendering gold gradients…',
+            'Optimizing animations for smooth vibes…',
+            'Almost there — welcome to my world!'
+        ];
+        let msgIndex = 0;
+        if (subtext) {
+            subtext.textContent = messages[msgIndex];
+            const rotate = setInterval(() => {
+                msgIndex = (msgIndex + 1) % messages.length;
+                subtext.textContent = messages[msgIndex];
+            }, 900);
+            // Stop rotating shortly before hide
+            setTimeout(() => clearInterval(rotate), 500);
+        }
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }
+    }, 600);
+});
+
+// Lazy load heavy libraries
+function loadScript(src, callback) {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = callback;
+    document.body.appendChild(script);
+}
+
+// Load GSAP and Three.js after initial render
+window.addEventListener('DOMContentLoaded', function() {
+    // Load GSAP
+    loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js', function() {
+        loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js', function() {
+            loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/TextPlugin.min.js', function() {
+                initGSAPAnimations();
+            });
+        });
+    });
+
+    // Load Three.js for particle effects (lower priority, skip on Save-Data/slow)
+    setTimeout(() => {
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const saveData = connection && (connection.saveData || (connection.effectiveType && connection.effectiveType.includes('2g')));
+        if (!saveData && window.innerWidth > 768) {
+            loadScript('https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js', function() {
+                initParticleBackground();
+            });
+        }
+    }, 1200);
+
+    // Initialize core features immediately
+    initCoreFeatures();
+});
+
+// Core features that don't need external libraries
+function initCoreFeatures() {
+    // Mobile menu
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    }
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Close mobile menu if open
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('main-nav');
+    let lastScroll = 0;
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.scrollY;
+        if (currentScroll > 50) {
+            navbar.classList.add('py-2');
+            navbar.classList.remove('py-4');
+        } else {
+            navbar.classList.add('py-4');
+            navbar.classList.remove('py-2');
+        }
+        lastScroll = currentScroll;
+    });
+
+    // Scroll progress
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', function() {
+        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        progressBar.style.transform = `scaleX(${scrolled / 100})`;
+    });
+
+    // Contact form
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'SENDING...';
+            submitButton.disabled = true;
+
+            setTimeout(() => {
+                showNotification('Thank you for your message! I will get back to you soon.', 'success');
+                this.reset();
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }, 1500);
+        });
+    }
+
+    // AI Assistant
+    const assistant = document.getElementById('floating-assistant');
+    const bubble = document.getElementById('assistant-bubble');
+
+    if (assistant && bubble) {
+        assistant.addEventListener('click', function(e) {
+            e.stopPropagation();
+            bubble.classList.toggle('opacity-0');
+            bubble.classList.toggle('translate-y-2');
+            bubble.classList.toggle('pointer-events-none');
+        });
+
+        bubble.addEventListener('click', function(e) {
+            if (e.target.classList.contains('assistant-btn')) {
+                const action = e.target.getAttribute('data-action');
+                if (action === 'skills') {
+                    document.querySelector('#skills').scrollIntoView({ behavior: 'smooth' });
+                } else if (action === 'projects') {
+                    document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
+                }
+                bubble.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!assistant.contains(e.target)) {
+                bubble.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+            }
+        });
+    }
+
+    // Contact info click to copy
+    document.querySelectorAll('.contact-info').forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', function() {
+            navigator.clipboard.writeText(this.textContent).then(() => {
+                showNotification(`Copied: ${this.textContent}`, 'success');
+            });
+        });
+    });
+
+    // Initial skill bars animation (CSS only)
+    setTimeout(() => {
+        document.querySelectorAll('.liquid-progress').forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            bar.style.width = width;
+            bar.style.transition = 'width 1.5s ease-out';
+        });
+    }, 1500);
+
+    // Fun Facts word cloud (centered "About Me" with surrounding keywords)
+    const funFactsContainer = document.getElementById('fun-facts-cloud');
+    if (funFactsContainer) {
+        const centerText = 'About Me';
+        const funFactsKeywords = [
+            { text: 'AI', weight: 3 },
+            { text: 'Start using ChatGPT from 3.5', weight: 2 },
+            { text: 'Romantic Novels', weight: 2 },
+            { text: 'Chinese History', weight: 2 },
+            { text: 'Esports', weight: 2 },
+            { text: 'Bazi', weight: 1 },
+            { text: 'Supersitious', weight: 1 },
+            { text: 'Research enthusiast', weight: 2 },
+            { text: 'ISTP', weight: 2 },
+            { text: 'Sleep Lover', weight: 2 },
+            { text: 'Math = mental abuse human, but still loves it', weight: 2 },
+            { text: 'Structure', weight: 2 },
+            { text: 'Finance Models', weight: 2 },
+            { text: 'Data', weight: 3 },
+            { text: 'Curiosity', weight: 2 },
+            { text: 'Problem Solving', weight: 2 },
+            { text: 'Analytical', weight: 2 },
+            { text: 'Builder', weight: 1 },
+            { text: 'Gamer', weight: 1 },
+            { text: 'Storytelling', weight: 2 },
+            { text: 'Design', weight: 1 },
+            { text: 'Spreadsheets', weight: 1 },
+            { text: 'IDENTITY V', weight: 2 },
+            { text: 'sushi', weight: 2 },
+            { text: 'movies', weight: 2 },
+            { text: 'Machine Learning', weight: 2 },
+            { text: 'Time Series', weight: 1 },
+            { text: 'Trading', weight: 1 },
+            { text: 'Risk', weight: 1 },
+            { text: 'Portfolio', weight: 1 },
+            { text: 'Backtesting', weight: 1 },
+            { text: 'Research', weight: 2 },
+            { text: 'Autodidact', weight: 1 },
+            { text: 'Pragmatic', weight: 1 },
+            { text: 'Introvert', weight: 1 },
+            { text: 'Focus', weight: 1 },
+            { text: 'Systems', weight: 2 },
+            { text: 'Models', weight: 2 },
+            { text: 'Numbers', weight: 1 },
+            { text: 'Finance', weight: 2 },
+            { text: 'Data Viz', weight: 1 },
+            { text: 'Dashboards', weight: 1 },
+            { text: 'Automation', weight: 1 },
+            { text: 'APIs', weight: 1 },
+            { text: 'Open Source', weight: 1 },
+            { text: 'Reading', weight: 1 },
+            { text: 'Sci‑Fi', weight: 1 },
+            { text: 'History', weight: 1 },
+            { text: 'Philosophy', weight: 1 },
+            { text: 'Strategy', weight: 1 },
+            { text: 'Piano', weight: 1 },
+            { text: 'Music', weight: 1 }
+        ];
+
+        const orientations = [0, 90]; // degrees
+        const edgePad = 12;      // distance from container edges
+        const itemGap = 18;      // gap between items to avoid touching
+        const centerGap = 24;    // extra clear space around the center label (closer to About Me)
+        function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+        function sizeForWeight(weight) {
+            if (weight === 3) return pick(['text-2xl','text-3xl']);
+            if (weight === 2) return pick(['text-lg','text-xl']);
+            return pick(['text-sm','text-base']);
+        }
+
+
+
+        function collides(a, b) {
+            return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
+        }
+
+        function placeNodes() {
+            funFactsContainer.innerHTML = '';
+            funFactsContainer.style.position = 'relative';
+
+            const containerRect = funFactsContainer.getBoundingClientRect();
+            const center = { x: (containerRect.width / 2), y: (containerRect.height / 2) };
+
+            const centerEl = document.createElement('div');
+            centerEl.textContent = centerText;
+            centerEl.className = 'absolute font-bold text-matte-gold text-3xl md:text-4xl pointer-events-auto cursor-pointer';
+            funFactsContainer.appendChild(centerEl);
+            const cRect = centerEl.getBoundingClientRect();
+            const cW = cRect.width; const cH = cRect.height;
+            centerEl.style.left = `${center.x - cW / 2}px`;
+            centerEl.style.top = `${center.y - cH / 2}px`;
+
+            const containerBox = funFactsContainer.getBoundingClientRect();
+            const centerBox = centerEl.getBoundingClientRect();
+            const placed = [{
+                left: centerBox.left - containerBox.left - (centerGap + itemGap),
+                top: centerBox.top - containerBox.top - (centerGap + itemGap),
+                right: centerBox.right - containerBox.left + (centerGap + itemGap),
+                bottom: centerBox.bottom - containerBox.top + (centerGap + itemGap)
+            }];
+
+            function tryPlaceSpiral(el, w, h) {
+                const containerW = funFactsContainer.clientWidth;
+                const containerH = funFactsContainer.clientHeight;
+                const maxRadius = Math.hypot(containerW, containerH);
+                const minStart = Math.max(cW, cH) / 2 + centerGap + itemGap + 8;
+                let radius = minStart + Math.random() * 16;
+                let angle = Math.random() * Math.PI * 2;
+                const angleStep = 0.3;
+                const radiusStep = 2.5;
+                for (let iter = 0; iter < 4000 && radius < maxRadius + 40; iter++) {
+                    const cx = center.x + Math.cos(angle) * radius;
+                    const cy = center.y + Math.sin(angle) * radius;
+                    const x = Math.max(edgePad, Math.min(containerW - w - edgePad, cx - w / 2));
+                    const y = Math.max(edgePad, Math.min(containerH - h - edgePad, cy - h / 2));
+                    // Temporarily place to measure the true rotated bounding box
+                    el.style.left = `${x}px`;
+                    el.style.top = `${y}px`;
+                    const elBox = el.getBoundingClientRect();
+                    const rect = {
+                        left: Math.floor(elBox.left - containerBox.left - itemGap),
+                        top: Math.floor(elBox.top - containerBox.top - itemGap),
+                        right: Math.ceil(elBox.right - containerBox.left + itemGap),
+                        bottom: Math.ceil(elBox.bottom - containerBox.top + itemGap)
+                    };
+                    // keep inside container bounds
+                    if (rect.left < 0 || rect.top < 0 || rect.right > containerW || rect.bottom > containerH) {
+                        angle += angleStep;
+                        radius += radiusStep;
+                        continue;
+                    }
+                    let ok = true;
+                    for (const r of placed) { if (collides(rect, r)) { ok = false; break; } }
+                    if (ok) {
+                        placed.push(rect);
+                        return true;
+                    }
+                    angle += angleStep;
+                    radius += radiusStep;
+                }
+                return false;
+            }
+
+            funFactsKeywords
+                .map(k => ({ ...k, rnd: Math.random() }))
+                .sort((a,b) => b.weight - a.weight || a.rnd - b.rnd)
+                .forEach(({ text, weight }, index) => {
+                    const item = document.createElement('div');
+                    const rotate = pick(orientations);
+                    const sizeClass = sizeForWeight(weight);
+
+                    item.className = `absolute ${sizeClass} font-semibold text-gray-300 hover:text-matte-gold cursor-pointer transition-transform duration-300 will-change-transform`;
+                    item.style.transformOrigin = 'top left';
+                    item.style.transform = `rotate(${rotate}deg)`;
+                    item.style.left = '0px';
+                    item.style.top = '0px';
+                    item.style.visibility = 'hidden';
+                    item.innerHTML = `<div class="skill-bubble">${text}</div>`;
+                    funFactsContainer.appendChild(item);
+
+                    // Measure rotated bounding box size
+                    const r = item.getBoundingClientRect();
+                    const w = r.width;
+                    const h = r.height;
+
+                    if (tryPlaceSpiral(item, w, h)) {
+                        item.style.visibility = '';
+                    } else {
+                        item.remove();
+                    }
+                });
+
+            centerEl.addEventListener('click', (e) => { e.stopPropagation(); shufflePlacement(); });
+        }
+
+        function shufflePlacement() {
+            funFactsContainer.style.opacity = '0';
+            setTimeout(() => { placeNodes(); funFactsContainer.style.opacity = '1'; }, 160);
+        }
+
+        placeNodes();
+        funFactsContainer.addEventListener('click', shufflePlacement);
+        window.addEventListener('resize', () => { placeNodes(); });
+    }
+
+
+
+    // Simple auto carousel for Waterloo photography
+    const carousel = document.getElementById('waterloo-carousel');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    if (carousel) {
+        let index = 0;
+        // Dynamically populate slides from image1 folder (1..20 check)
+        if (carousel.dataset.dynamic === 'true') {
+            const fragment = document.createDocumentFragment();
+            const maxTry = 20; // upper bound to scan existing files
+            for (let i = 1; i <= maxTry; i++) {
+                const path = `./image1/${i}.jpg`;
+                const link = document.createElement('a');
+                link.href = path;
+                link.target = '_blank';
+                link.className = 'block min-w-full';
+
+                const img = document.createElement('img');
+                img.src = path;
+                img.alt = `Waterloo photo ${i}`;
+                img.loading = i === 1 ? 'eager' : 'lazy';
+                img.decoding = 'async';
+                img.setAttribute('fetchpriority', i === 1 ? 'high' : 'auto');
+                img.className = 'w-full h-[320px] sm:h-[420px] object-cover';
+
+                // If 404 skip on error (will be removed before layout)
+                img.addEventListener('error', () => { link.remove(); }, { once: true });
+
+                link.appendChild(img);
+                fragment.appendChild(link);
+            }
+            carousel.appendChild(fragment);
+        }
+
+        // Setup infinite loop by cloning first/last
+        let slides = Array.from(carousel.children);
+        const total = slides.length; // real slides
+        if (total === 0) return;
+
+        if (total > 1) {
+            const firstClone = slides[0].cloneNode(true);
+            const lastClone = slides[slides.length - 1].cloneNode(true);
+            carousel.appendChild(firstClone);
+            carousel.insertBefore(lastClone, carousel.firstChild);
+        }
+
+        slides = Array.from(carousel.children); // now includes clones when present
+        const slideCount = slides.length;
+
+        // Start at index 1 (first real slide) when we have clones
+        index = total > 1 ? 1 : 0;
+        carousel.style.transform = `translateX(${-index * 100}%)`;
+
+        function snapIfClone() {
+            if (total <= 1) return;
+            // If moved to the cloned last (index 0), snap to real last
+            if (index === 0) {
+                index = slideCount - 2;
+                carousel.style.transition = 'none';
+                carousel.style.transform = `translateX(${-index * 100}%)`;
+                // force reflow then restore transition
+                void carousel.offsetWidth;
+                carousel.style.transition = '';
+            }
+            // If moved to cloned first (last index), snap to real first
+            if (index === slideCount - 1) {
+                index = 1;
+                carousel.style.transition = 'none';
+                carousel.style.transform = `translateX(${-index * 100}%)`;
+                void carousel.offsetWidth;
+                carousel.style.transition = '';
+            }
+        }
+
+        function goTo(i) {
+            index = i;
+            carousel.style.transform = `translateX(${-index * 100}%)`;
+            // handle snap after transition completes
+            if (total > 1) {
+                carousel.addEventListener('transitionend', snapIfClone, { once: true });
+            }
+        }
+
+        prevBtn && prevBtn.addEventListener('click', () => { goTo(index - 1); });
+        nextBtn && nextBtn.addEventListener('click', () => { goTo(index + 1); });
+
+        // Support swipe on touch devices
+        let startX = null;
+        carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+        carousel.addEventListener('touchend', (e) => {
+            if (startX === null) return;
+            const diff = e.changedTouches[0].clientX - startX;
+            if (Math.abs(diff) > 40) {
+                if (diff > 0) { goTo(index - 1); } else { goTo(index + 1); }
+            }
+            startX = null;
+        });
+
+        // Auto-play disabled by request
+    }
+
+    // Friends & Family carousel (dynamic from friends folder)
+    const friendsCarousel = document.getElementById('friends-carousel');
+    const friendsPrev = document.getElementById('friends-prev');
+    const friendsNext = document.getElementById('friends-next');
+    if (friendsCarousel) {
+        let index = 0;
+        if (friendsCarousel.dataset.dynamic === 'true') {
+            const fragment = document.createDocumentFragment();
+            const maxTry = 30;
+            for (let i = 1; i <= maxTry; i++) {
+                const path = `./friends/${i}.jpg`;
+                const link = document.createElement('a');
+                link.href = path;
+                link.target = '_blank';
+                link.className = 'block min-w-full';
+
+                const img = document.createElement('img');
+                img.src = path;
+                img.alt = `Friends & Family ${i}`;
+                img.loading = i === 1 ? 'eager' : 'lazy';
+                img.decoding = 'async';
+                img.setAttribute('fetchpriority', i === 1 ? 'high' : 'auto');
+                img.className = 'w-full h-[320px] sm:h-[420px] object-cover';
+
+                img.addEventListener('error', () => { link.remove(); }, { once: true });
+                link.appendChild(img);
+                fragment.appendChild(link);
+            }
+            friendsCarousel.appendChild(fragment);
+        }
+
+        let slides = Array.from(friendsCarousel.children);
+        const total = slides.length;
+        if (total === 0) return;
+
+        if (total > 1) {
+            const firstClone = slides[0].cloneNode(true);
+            const lastClone = slides[slides.length - 1].cloneNode(true);
+            friendsCarousel.appendChild(firstClone);
+            friendsCarousel.insertBefore(lastClone, friendsCarousel.firstChild);
+        }
+
+        slides = Array.from(friendsCarousel.children);
+        const slideCount = slides.length;
+        index = total > 1 ? 1 : 0;
+        friendsCarousel.style.transform = `translateX(${-index * 100}%)`;
+
+        function snapIfClone() {
+            if (total <= 1) return;
+            if (index === 0) {
+                index = slideCount - 2;
+                friendsCarousel.style.transition = 'none';
+                friendsCarousel.style.transform = `translateX(${-index * 100}%)`;
+                void friendsCarousel.offsetWidth;
+                friendsCarousel.style.transition = '';
+            }
+            if (index === slideCount - 1) {
+                index = 1;
+                friendsCarousel.style.transition = 'none';
+                friendsCarousel.style.transform = `translateX(${-index * 100}%)`;
+                void friendsCarousel.offsetWidth;
+                friendsCarousel.style.transition = '';
+            }
+        }
+        function goTo(i) {
+            index = i;
+            friendsCarousel.style.transform = `translateX(${-index * 100}%)`;
+            if (total > 1) {
+                friendsCarousel.addEventListener('transitionend', snapIfClone, { once: true });
+            }
+        }
+        friendsPrev && friendsPrev.addEventListener('click', () => { goTo(index - 1); });
+        friendsNext && friendsNext.addEventListener('click', () => { goTo(index + 1); });
+        let startX = null;
+        friendsCarousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+        friendsCarousel.addEventListener('touchend', (e) => {
+            if (startX === null) return;
+            const diff = e.changedTouches[0].clientX - startX;
+            if (Math.abs(diff) > 40) { if (diff > 0) { goTo(index - 1); } else { goTo(index + 1); } }
+            startX = null;
+        });
+        // Auto-play disabled by request
+    }
+}
+
+// GSAP Animations (loaded after)
+function initGSAPAnimations() {
+    if (typeof gsap === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+    // Hero text animation
+    gsap.to('#hello-text', {
+        duration: 1.5,
+        text: "HELLO",
+        opacity: 1,
+        ease: "power4.out"
+    });
+
+    gsap.to('#name-text', {
+        duration: 1.5,
+        text: "I'M XIMO",
+        opacity: 1,
+        ease: "power4.out",
+        delay: 1.2
+    });
+
+    // Welcome text typing effect
+    const welcomeText = document.getElementById('welcome-text');
+    if (welcomeText) {
+        const message = "Hey, welcome to my website!";
+        gsap.to(welcomeText, {
+            duration: 2,
+            text: message,
+            ease: "none",
+            delay: 2.5
+        });
+    }
+
+    // Section animations
+    document.querySelectorAll('.section-title').forEach(title => {
+        gsap.to(title, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: title,
+                start: "top 80%",
+                once: true
+            }
+        });
+    });
+}
+
+// Three.js Particle Background (loaded after, desktop only)
+function initParticleBackground() {
+    if (typeof THREE === 'undefined') return;
+    
+    const container = document.getElementById('particle-container');
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Simplified particle system
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCnt = new Float32Array(1500 * 3);
+
+    for (let i = 0; i < 1500 * 3; i++) {
+        particlesCnt[i] = (Math.random() - 0.5) * 20;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlesCnt, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.02,
+        color: 0xD4AF37,
+        transparent: true,
+        opacity: 0.6
+    });
+
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    function animate() {
+        requestAnimationFrame(animate);
+        particlesMesh.rotation.x += 0.0001;
+        particlesMesh.rotation.y += 0.0001;
+        renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+}
+
+// Notification system
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 z-[9999] px-6 py-4 rounded-lg shadow-lg transform translate-x-full transition-all duration-300 ${
+        type === 'success' ? 'bg-green-600' :
+        type === 'error' ? 'bg-red-600' :
+        'bg-matte-gold'
+    } text-white font-medium`;
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+</script>
+
+</body>
+</html>
